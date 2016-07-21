@@ -1,0 +1,5 @@
+*.pyc
+*.sqlite3
+/static/
+.idea/
+/archivo_libros
