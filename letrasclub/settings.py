@@ -45,8 +45,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cities_light',
+    'libros',
     'perfiles',
-    'libros'
+    'notificaciones',
+    'rest_framework'
 ]
 
 MIDDLEWARE_CLASSES = [

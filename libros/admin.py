@@ -1,3 +1,7 @@
 from django.contrib import admin
 
-# Register your models here.
+from libros.models import Libro, LibroLibreria, Libreria
+
+admin.site.register(Libro)
+admin.site.register(LibroLibreria)
+admin.site.register(Libreria)

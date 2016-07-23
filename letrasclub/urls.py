@@ -20,11 +20,13 @@ from django.conf.urls.static import static
 
 from libros.views import Inicio
 
+
 urlpatterns = [
-    url(r'^$', Inicio.as_view(), name='main_redirect'),
+    url(r'^$', Inicio.as_view(), name='inicio'),
     url(r'^admin/', admin.site.urls),
     url(r'^perfiles/', include('perfiles.urls', namespace="perfiles")),
     url(r'^libros/', include('libros.urls', namespace="libros")),
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
 
 if settings.DEBUG:

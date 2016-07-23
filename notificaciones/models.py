@@ -18,12 +18,12 @@ class Notificacion(models.Model):
                                related_name="perfil")  # El perfil de la persona que ocasiono la notificación
     segundo_perfil = models.ForeignKey(Perfil, null=True, blank=True,
                                        related_name="segundo_perfil")  # Perfil opcional
-    librolibreria = models.ForeignKey(LibroLibreria, null=True, blank=True, related_name="libro")
+    librolibreria = models.ForeignKey(LibroLibreria, null=True, blank=True, related_name="primer_libro")
     segundo_librolibreria = models.ForeignKey(LibroLibreria, null=True, blank=True, related_name="segundo_libro")
     leida = models.BooleanField(default=False)
 
     # model manager con metodos para crear notificaciones
-    objects = NManager()
+    # objects = NManager() Suma métodos al Manager para crear objetos Notificación adecuados
 
     class Meta:
         ordering = ["-fecha"]
