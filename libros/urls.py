@@ -7,4 +7,5 @@ urlpatterns = [
 
     # REST API
     url(r'^buscar_libro/(?P<id_ciudad>\d+)/(?P<q>\w+)/$', views.BuscarLibro.as_view(), name="buscar_libro"),
+    url(r'^crear_libro/$', views.CrearLibro.as_view(), name="crear_libro"),
 ]

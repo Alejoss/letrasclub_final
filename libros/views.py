@@ -32,9 +32,16 @@ class LibrosCiudad(TemplateView):
 
         ciudad = get_object_or_404(City, id=kwargs['id_ciudad'])
         context['ciudad'] = ciudad
-        context['librerias'] = Libreria.objects.filter(ciudad=ciudad, eliminada=False)
-        context['libros_destacados'] = LibroLibreria.objects.filter(eliminado=False, destacado=True,
-                                                                    libreria__ciudad=ciudad).select_related("libro")
+
+        librerias = Libreria.objects.filter(ciudad=ciudad, eliminada=False)
+        libros_destacados = LibroLibreria.objects.filter(eliminado=False, destacado=True,
+                                                         libreria__ciudad=ciudad).select_related("libro")
+        if not librerias or not libros_destacados:
+            pass
+            # TODO SI NO HAY LIBRERIAS NI LIBROS DESTACADOS ...
+
+        context['librerias'] = librerias
+        context['libros_destacados'] = libros_destacados
         context['actividad'] = Actividad.objects.filter(libro_libreria__libreria__ciudad=ciudad)
 
         return context
@@ -55,3 +62,11 @@ class BuscarLibro(generics.ListAPIView):
         resultado_busqueda = itertools.chain(libros_por_titulo, libros_por_autor)
 
         return resultado_busqueda
+
+
+class CrearLibro(generics.CreateAPIView):
+    """
+    Crea un Libro y lo adjudica a un LibroLibrería de un usuario
+    """
+
+    serializer_class = LibroLibreriaSerializer

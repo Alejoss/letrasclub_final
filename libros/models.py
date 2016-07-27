@@ -8,7 +8,7 @@ from perfiles.models import Perfil, City
 
 class Libreria(models.Model):
     admin = models.ForeignKey(Perfil)
-    nombre = models.CharField(max_length=255, blank=True)
+    nombre = models.CharField(max_length=255, blank=True, unique=True)
     ciudad = models.ForeignKey(City)
     slug = models.SlugField(null=True, blank=True, max_length=255)
     ubicacion = models.CharField(max_length=500, blank=True)  # [latitude, longitude]
