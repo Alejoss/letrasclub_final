@@ -5,6 +5,7 @@ from perfiles.models import City, Perfil
 
 
 class LibroSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Libro
         fields = ["isbn", "titulo", "autor", "descripcion"]
@@ -24,7 +25,6 @@ class LibroLibreriaSerializer(serializers.ModelSerializer):
     libreria = serializers.SlugRelatedField(slug_field="nombre", queryset=Libreria.objects.all())
 
     def create(self, validated_data):
-        print validated_data
         libreria_slug = validated_data['libreria']
         libreria = Libreria.objects.get(slug=libreria_slug)
         libro = Libro.objects.create(

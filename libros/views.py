@@ -9,7 +9,7 @@ from rest_framework import generics
 from perfiles.models import City
 from libros.models import Libreria, LibroLibreria
 from notificaciones.models import Actividad
-from libros.serializers import LibroLibreriaSerializer
+from libros.serializers import LibroLibreriaSerializer, LibroSerializer, Libro
 
 
 class Inicio(TemplateView):
@@ -70,3 +70,14 @@ class CrearLibro(generics.CreateAPIView):
     """
 
     serializer_class = LibroLibreriaSerializer
+
+
+class EditarLibro(generics.UpdateAPIView):
+    """
+    Edita un Libro object
+    """
+
+    serializer_class = LibroSerializer
+    lookup_url_kwarg = "id_libro"
+    lookup_field = "id"
+    queryset = Libro.objects.all()
